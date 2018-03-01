@@ -9,7 +9,7 @@ PAGES, GROUP, BY_VAL = range(3)
 
 keyboard = [[KeyboardButton(text='Yes'),
             KeyboardButton(text='No')]]
-markup = ReplyKeyboardMarkup(keyboard)
+markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
 
 
 def start(bot, update):
@@ -19,11 +19,10 @@ def start(bot, update):
 
 def pages(bot, update, user_data):
     text = update.message.text
-    print(text)
     count = get_count(text)
     if isinstance(count, Exception):
         count = str(count)
-        update.message.reply_text("{}\nTry again".format(count[0].lower() + count[1:]))
+        update.message.reply_text("{}\nTry again".format(count[0].upper() + count[1:]))
         return PAGES
     user_data['count'] = count
     update.message.reply_text("Fine!\nShall I group results?", reply_markup=markup)
@@ -32,13 +31,12 @@ def pages(bot, update, user_data):
 
 def group(bot, update, user_data):
     user_data['group'] = convert_arg(update.message.text)
-    update.message.reply_text("Shall I sort them by value?", reply_markup=markup)
+    update.message.reply_text("Fine!\nShall I sort them by value?", reply_markup=markup)
     return BY_VAL
 
 
 def by_val(bot, update, user_data):
     user_data['by_val'] = convert_arg(update.message.text)
-    print(user_data)
     update.message.reply_text(produce_output(**user_data))
     return ConversationHandler.END
 

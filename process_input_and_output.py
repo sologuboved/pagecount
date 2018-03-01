@@ -1,4 +1,4 @@
-from pages_per_chapter import count_pages, group_count, fill_in_zeros
+from pages_per_chapter import count_pages, group_count, fill_in_blanks
 
 
 def check_pages(user_input):
@@ -24,9 +24,6 @@ def convert_arg(arg):
 
 
 def produce_output(count, group, by_val):
-    print(count)
-    print(group)
-    print(by_val)
     if group:
         count = group_count(count)
     count = list(count.items())
@@ -37,7 +34,8 @@ def produce_output(count, group, by_val):
     count.sort(key=lambda p: p[ind])
     output = str()
     for page, length in count:
-        output += "{page} {length}\n".format(page=fill_in_zeros(page), length=length)
+        output += "{page} {length}\n".format(page=fill_in_blanks(page), length=length)
+    print(output)
     return output
 
 
