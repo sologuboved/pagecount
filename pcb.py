@@ -17,8 +17,7 @@ def start(bot, update):
 
 
 def pages(bot, update, user_data):
-    text = update.message.text
-    count = get_count(text)
+    count = get_count(update.message.text)
     if isinstance(count, Exception):
         count = str(count)
         update.message.reply_text("{}\nTry again".format(count[0].upper() + count[1:]))
