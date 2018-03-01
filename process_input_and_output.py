@@ -37,8 +37,3 @@ def produce_output(count, group, by_val):
         output += "{page} {length}\n".format(page=fill_in_blanks(page), length=length)
     print(output)
     return output
-
-
-if __name__ == '__main__':
-    c = get_count("1 5 14")
-    print(produce_output(c, 'Yes', 'S'))

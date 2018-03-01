@@ -1,9 +1,8 @@
 from tkn import TOKEN
 from process_input_and_output import get_count, convert_arg, produce_output
 
-from telegram import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
-                          ConversationHandler, CallbackQueryHandler)
+from telegram import ReplyKeyboardMarkup, KeyboardButton
+from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler)
 
 PAGES, GROUP, BY_VAL = range(3)
 
@@ -54,12 +53,8 @@ def main():
     )
     dispatcher.add_handler(conv_handler)
 
-    # Start the Bot
     updater.start_polling()
 
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
