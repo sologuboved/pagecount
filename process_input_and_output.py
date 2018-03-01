@@ -1,17 +1,46 @@
-from pages_per_chapter import prettyprint_count
-
-INVALID_INPUT = 'Invalid Input!'
+from pages_per_chapter import count_pages, group_count, fill_in_zeros
 
 
-def process_pages(user_input):
+def check_pages(user_input):
+    pages = list(map(int, user_input.split()))
+    if len(pages) < 2:
+        raise ValueError("too few pages")
+    if sorted(pages) != pages:
+        raise ValueError("wrong order")
+    return pages
+
+
+def get_count(user_input):
     try:
-        pages = list(map(int, user_input.split()))
+        pages = check_pages(user_input)
     except ValueError as e:
-        # print(isinstance(e, Exception))
         return e
-    # prettyprint_count(pages)
-    return True
+    count = count_pages(pages)
+    return count
+
+
+def convert_arg(arg):
+    return {'Yes': True, 'No': False}[arg]
+
+
+def produce_output(count, group, by_val):
+    print(count)
+    print(group)
+    print(by_val)
+    if group:
+        count = group_count(count)
+    count = list(count.items())
+    if by_val:
+        ind = 1
+    else:
+        ind = 0
+    count.sort(key=lambda p: p[ind])
+    output = str()
+    for page, length in count:
+        output += "{page} {length}\n".format(page=fill_in_zeros(page), length=length)
+    return output
 
 
 if __name__ == '__main__':
-    process_pages('1 2 3')
+    c = get_count("1 5 14")
+    print(produce_output(c, 'Yes', 'S'))

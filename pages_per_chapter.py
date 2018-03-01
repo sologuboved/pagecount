@@ -13,9 +13,8 @@ def count_pages(pages):
     return count
 
 
-def groupcount_pages(pages):
+def group_count(count):
     groupcount = dict()
-    count = count_pages(pages)
     for val in count.values():
         groupcount[val] = groupcount.get(val, 0) + 1
     return groupcount
@@ -23,14 +22,15 @@ def groupcount_pages(pages):
 
 def fill_in_zeros(num):
     num = str(num)
-    return num + ':' + ' ' * (10 - len(num))
+    return num + ':' + ' ' * (7 - len(num))
 
 
 def prettyprint_count(pages, grouped=False, sort_by_val=False):
+    count = count_pages(pages)
     if grouped:
-        count = list(groupcount_pages(pages).items())
+        count = list(group_count(count).items())
     else:
-        count = list(count_pages(pages).items())
+        count = list(count.items())
     if sort_by_val:
         index = 1
     else:
