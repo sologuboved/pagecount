@@ -35,5 +35,4 @@ def produce_output(count, group, by_val):
     output = str()
     for page, length in count:
         output += "{page} {length}\n".format(page=fill_in_blanks(page), length=length)
-    print(output)
     return output
