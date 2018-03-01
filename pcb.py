@@ -51,9 +51,7 @@ def main():
         allow_reentry=True, per_user=True
     )
     dispatcher.add_handler(conv_handler)
-
     updater.start_polling()
-
     updater.idle()
 
 
