@@ -2,7 +2,7 @@ from pages_per_chapter import count_pages, group_count, fill_in_blanks
 
 
 def check_pages(user_input):
-    pages = list(map(int, user_input.split()))
+    pages = list(map(int, user_input.split(',')))
     if len(pages) < 2:
         raise ValueError("too few pages")
     if sorted(pages) != pages:

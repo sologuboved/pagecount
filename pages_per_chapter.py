@@ -4,9 +4,6 @@ def count_pages(pages):
     next_index = 1
     while next_index < len(pages):
         finish = pages[next_index]
-        if start == finish:
-            next_index += 1
-            continue
         count[start] = finish - start
         start = finish
         next_index += 1
@@ -55,6 +52,8 @@ if __name__ == '__main__':
 
     # prettyprint_count(dervish, grouped=False, val=False)
     # prettyprint_count(tvrdjava, grouped=False, val=False)
-    prettyprint_count(phen, grouped=True, sort_by_val=False)
+    # prettyprint_count(phen, grouped=True, sort_by_val=False)
+
+    print(count_pages([1, 1, 1]))
 
 
