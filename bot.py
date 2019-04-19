@@ -1,10 +1,9 @@
-from tkn import TOKEN
-from process_input_and_output import get_count, convert_arg, produce_output
-
 from telegram import ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler)
-
 import logging
+from tkn import TOKEN
+from process_input_and_output import get_count, convert_arg, produce_output
+from pid_operations import write_pid
 
 PAGES, GROUP, BY_VAL = range(3)
 
@@ -79,4 +78,5 @@ def main():
 
 
 if __name__ == '__main__':
+    write_pid()
     main()
